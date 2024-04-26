@@ -11,6 +11,7 @@ namespace DMAWebProject.DAL
         public DbSet<User> Users { get; set; }
         public DbSet<Category>  Categories { get; set; }
         public DbSet<Products>  Products { get; set; }
+        //test
 
     }
 }
