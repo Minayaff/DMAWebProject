@@ -3,6 +3,7 @@ using DMAWebProject.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DMAWebProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240429141905_deleteOrders")]
+    partial class deleteOrders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,49 +39,6 @@ namespace DMAWebProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("DMAWebProject.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ProductId = 1,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ProductId = 2,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ProductId = 3,
-                            UserId = 2
-                        });
                 });
 
             modelBuilder.Entity("DMAWebProject.Models.Products", b =>
@@ -162,25 +122,6 @@ namespace DMAWebProject.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DMAWebProject.Models.Order", b =>
-                {
-                    b.HasOne("DMAWebProject.Models.Products", "Products")
-                        .WithMany("Orders")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DMAWebProject.Models.User", "Users")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Products");
-
-                    b.Navigation("Users");
-                });
-
             modelBuilder.Entity("DMAWebProject.Models.Products", b =>
                 {
                     b.HasOne("DMAWebProject.Models.Category", "Category")
@@ -195,16 +136,6 @@ namespace DMAWebProject.Migrations
             modelBuilder.Entity("DMAWebProject.Models.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("DMAWebProject.Models.Products", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("DMAWebProject.Models.User", b =>
-                {
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

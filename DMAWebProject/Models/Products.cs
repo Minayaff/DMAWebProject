@@ -13,5 +13,7 @@ namespace DMAWebProject.Models
         [ForeignKey("CategoryId")]
         [ValidateNever]
         public Category Category { get; set; }
+        public List<Order> Orders { get; set; }
+
     }
 }

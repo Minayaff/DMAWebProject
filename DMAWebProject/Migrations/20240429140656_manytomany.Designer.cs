@@ -3,6 +3,7 @@ using DMAWebProject.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DMAWebProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240429140656_manytomany")]
+    partial class manytomany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +41,7 @@ namespace DMAWebProject.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("DMAWebProject.Models.Order", b =>
+            modelBuilder.Entity("DMAWebProject.Models.Orders", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,26 +62,6 @@ namespace DMAWebProject.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ProductId = 1,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ProductId = 2,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ProductId = 3,
-                            UserId = 2
-                        });
                 });
 
             modelBuilder.Entity("DMAWebProject.Models.Products", b =>
@@ -162,7 +145,7 @@ namespace DMAWebProject.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DMAWebProject.Models.Order", b =>
+            modelBuilder.Entity("DMAWebProject.Models.Orders", b =>
                 {
                     b.HasOne("DMAWebProject.Models.Products", "Products")
                         .WithMany("Orders")
