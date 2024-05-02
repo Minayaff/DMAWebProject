@@ -19,7 +19,7 @@ namespace DMAWebProject.Controllers
 
         public IActionResult Index()
         {
-            return View(appDbContext.Sliders.Where(x=>x.IsCheck !=false).ToList());
+            return View(appDbContext.Sliders.Where(x=>x.IsCheck !=true).ToList());
         }
         public IActionResult About()
         {

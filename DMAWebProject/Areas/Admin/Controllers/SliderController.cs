@@ -65,7 +65,7 @@ namespace DMAWebProject.Areas.Admin.Controllers
             var slider = appDbContext.Sliders.Find(id); //axtarib tapiram
             if (slider!=null)
             {
-                appDbContext.Sliders.Remove(slider);
+                slider.IsCheck = true;
                 appDbContext.SaveChanges();
             }
 
