@@ -20,7 +20,7 @@ namespace DMAWebProject.Areas.Admin.Controllers
         public IActionResult Index()
         {
 
-            return View(appDbContext.Sliders.ToList());
+            return View(appDbContext.Sliders.Where(x=>x.IsActive==true).ToList());
         }
         public IActionResult Create()
         {
@@ -65,7 +65,7 @@ namespace DMAWebProject.Areas.Admin.Controllers
             var slider = appDbContext.Sliders.Find(id); //axtarib tapiram
             if (slider!=null)
             {
-                slider.IsCheck = true;
+                slider.IsActive = false; ;
                 appDbContext.SaveChanges();
             }
 

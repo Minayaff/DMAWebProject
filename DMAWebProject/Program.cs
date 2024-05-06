@@ -1,5 +1,6 @@
 ﻿using DMAWebProject.DAL;
 using DMAWebProject.Models;
+using FastenyApp.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +34,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedEmail = false; //qeydiyyat etdikden sonra email ile token gönderecek 
     options.SignIn.RequireConfirmedPhoneNumber = false; //telefon doğrulaması
 });
-
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 var app = builder.Build();
 

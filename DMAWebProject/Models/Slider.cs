@@ -18,6 +18,6 @@ namespace DMAWebProject.Models
         [ValidateNever]
         public IFormFile file { get; set; }
 
-        public bool IsCheck { get; set; } = false;
+        public bool IsActive { get; set; } = true   ;
     }
 }
