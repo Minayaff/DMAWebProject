@@ -52,6 +52,19 @@
                             </div>
                             <div class="col-md-3">
                                 <label>
+                                    Esas sekil
+                                </label>
+                                <input type="file" asp-for="ImgUrlBaseFile" class="form-control" />
+                                <span asp-validation-for="ImgUrlBaseFile" class="text-danger"></span>
+                            </div>
+                              <div class="col-md-3">
+                                <label>
+                                    Elave sekiller
+                                </label>
+                                <input type="file" asp-for="ImagesFiles" class="form-control" multiple/>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
                                     Category
                                 </label>
                                 <select class="form-select" asp-for="CategoryId">

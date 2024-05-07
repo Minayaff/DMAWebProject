@@ -13,6 +13,7 @@ namespace DMAWebProject.DAL
         public DbSet<Category> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Images> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
