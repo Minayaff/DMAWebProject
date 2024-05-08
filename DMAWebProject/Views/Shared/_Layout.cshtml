@@ -577,9 +577,13 @@
                     </div><!-- /.header-tools__item hover-container -->
                     @if (SignInManager.IsSignedIn(User))
                     {
+                        Task<ProgramUser> GetCurrentUserAsync() => UserManager.GetUserAsync(User);
+
+                        var user = await GetCurrentUserAsync();
+
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Hello @User.Identity.Name
+                                Hello @user.Name @user.Surname
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>

@@ -19,7 +19,7 @@ namespace DMAWebProject.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(appDbContext.Products.Include(x => x.Category).ToList());
+            return View(appDbContext.Products.Include(x => x.Category).Where(x=>x.IsActive==true).ToList());
         }
 
         public IActionResult Create()
@@ -143,7 +143,7 @@ namespace DMAWebProject.Areas.Admin.Controllers
 
         }
 
-        public IActionResult DeleteImage(int id)
+        public JsonResult DeleteImage(int id)
         {
             if (id!=0)
             {
@@ -151,7 +151,36 @@ namespace DMAWebProject.Areas.Admin.Controllers
                 appDbContext.Images.Remove(model);
                 appDbContext.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return Json(new
+            {
+                status = 200
+            });
+        }
+
+
+
+        public JsonResult Delete(int id)
+        {
+            if (id == 0)
+            {
+                return Json(new
+                {
+                    status = 400
+                });
+            }
+
+            var slider = appDbContext.Products.Find(id); //axtarib tapiram
+            if (slider != null)
+            {
+                slider.IsActive = false; ;
+                appDbContext.SaveChanges();
+            }
+
+            return Json(new
+            {
+                status = 200
+            });
+
         }
 
     }
